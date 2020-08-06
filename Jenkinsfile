@@ -49,7 +49,7 @@ pipeline
 		{
 			steps
 			{
-				withSonarQubeEnv("Test_Sonar") 
+				withSonarQubeEnv("SonarQube") 
 				{
 					bat "mvn sonar:sonar"
 				}
