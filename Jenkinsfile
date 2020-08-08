@@ -35,7 +35,7 @@ pipeline
 		{
 			steps
 			{
-				bat "mvn install"
+				bat "mvn clean install"
 			}
 		}
 		stage ('Unit Testing')
