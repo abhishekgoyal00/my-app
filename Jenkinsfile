@@ -55,5 +55,10 @@ pipeline
 				}
 			}
 		}
+	    	stage('Docker Image') {
+			steps {
+				bat returnStdout: true, script: 'docker build -t abhigoyaldev/my-app:%BUILD_NUMBER% -f Dockerfile .'
+			}
+		}
     }
 }
