@@ -60,12 +60,20 @@ pipeline
 				bat returnStdout: true, script: 'docker build -t abhigoyaldev/my-app:%BUILD_NUMBER% -f Dockerfile .'
 			}
 		}
-	    	stage ('Push to DTR') {			
+	    	/*stage ('Push to DTR') {			
 			steps{	
 				withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
 					bat returnStdout: true, script: "docker login -u abhigoyaldev -p ${dockerHubPwd}"
 				}
 				bat returnStdout: true, script: 'docker push abhigoyaldev/my-app:%BUILD_NUMBER%'
+			}
+		}*/
+	    	stage('Stop Running container') {
+			steps {
+				bat ''
+				'
+				@echo off
+				for / f "tokens=*" % % a in ('docker ps -q --filter "name=my-app"') do docker stop % % a && docker rm % % a || exit / b 0 ''					'
 			}
 		}
 	    	stage('Docker deployment') {
