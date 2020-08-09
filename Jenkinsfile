@@ -70,7 +70,7 @@ pipeline
 		}
 	    	stage('Docker deployment') {
 			steps {
-				bat 'docker run -p 5016:8080 -d--name my-app abhigoyaldev/my-app:%BUILD_NUMBER%'
+				bat 'docker run -p 5016:8080 -d -name my-app abhigoyaldev/my-app:%BUILD_NUMBER%'
 			}
 		}
     }
