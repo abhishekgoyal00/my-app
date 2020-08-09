@@ -68,5 +68,10 @@ pipeline
 				bat returnStdout: true, script: 'docker push abhigoyaldev/my-app:%BUILD_NUMBER%'
 			}
 		}
+	    	stage('Docker deployment') {
+			steps {
+				bat 'docker run --name abhigoyaldev/my-app -d -p 5016:8080 abhigoyaldev/my-app:%BUILD_NUMBER%'
+			}
+		}
     }
 }
