@@ -70,11 +70,9 @@ pipeline
 		}*/
 	    	stage('Stop Running container') {
 			steps {
-				bat ''
-				'
+				bat '
 				@echo off
-				for / f "tokens=*" % % a in ('docker ps -q --filter "name=my-app"') do docker stop % % a && docker rm % % a || exit / b 0 ''
-				'
+				for / f "tokens=*" % % a in ('docker ps -q --filter "name=my-app"') do docker stop % % a && docker rm % % a || exit / b 0 '
 			}
 		}
 	    	stage('Docker deployment') {
