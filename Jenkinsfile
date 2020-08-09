@@ -62,7 +62,7 @@ pipeline
 		}
 	    	stage ('Push to DTR') {
 			withCredentials([string(credentialsId: 'afc010dc-d949-4f07-9cff-9f69a6c4158c', variable: 'dockerHubPwd')]) {
-				bat returnStdout: true, script: 'docker login -u abhigoyaldev -p ${dockerHubPwd}'
+				bat returnStdout: true, script: "docker login -u abhigoyaldev -p ${dockerHubPwd}"
 			}
 			steps{				
 				bat returnStdout: true, script: 'docker push abhigoyaldev/my-app:%BUILD_NUMBER%'
