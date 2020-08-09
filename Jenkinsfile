@@ -62,6 +62,7 @@ pipeline
 		}
 	    	stage ('Push to DTR') {
 			steps{
+				bat returnStdout: true, script: 'docker login -u abhigoyaldev -p P@ssw0rd22'
 				bat returnStdout: true, script: 'docker push abhigoyaldev/my-app:%BUILD_NUMBER%'
 			}
 		}
