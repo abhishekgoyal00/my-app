@@ -97,11 +97,11 @@ pipeline
 			}
 		}
     }
-    post {
+    /*post {
 		always {
 			emailext attachmentsPattern: 'report.html', body: '${JELLY_SCRIPT,template="health"}', mimeType: 'text/html', recipientProviders: [
 				[$class: 'RequesterRecipientProvider']
 			], replyTo: 'abhishekgoyal00@gmail.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishekgoyal00@gmail.com'
 		}
-	}	
+	}	*/
 }
