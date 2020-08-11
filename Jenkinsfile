@@ -55,7 +55,7 @@ pipeline
 				}
 			}
 		}
-	    	stage('Upload to Artifactory') {
+	    	/*stage('Upload to Artifactory') {
 			steps {
 				rtMavenDeployer(
 					id: 'deployer',
@@ -72,7 +72,7 @@ pipeline
 					serverId: '123456789@artifactory',
 				)
 			}
-		}
+		}*/
 	    	stage('Docker Image') {
 			steps {
 				bat returnStdout: true, script: 'docker build -t abhigoyaldev/my-app:%BUILD_NUMBER% -f Dockerfile .'
@@ -97,11 +97,11 @@ pipeline
 			}
 		}
     }
-    /*post {
+    post {
 		always {
 			emailext attachmentsPattern: 'report.html', body: '${JELLY_SCRIPT,template="health"}', mimeType: 'text/html', recipientProviders: [
 				[$class: 'RequesterRecipientProvider']
 			], replyTo: 'abhishekgoyal00@gmail.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishekgoyal00@gmail.com'
 		}
-	}	*/
+	}	
 }
