@@ -60,8 +60,8 @@ pipeline
 				rtMavenDeployer(
 					id: 'deployer',
 					serverId: '123456789@artifactory',
-					releaseRepo: 'libs-release-local',
-					snapshotRepo: 'libs-snapshot-local'
+					releaseRepo: 'abhigoyal_release',
+					snapshotRepo: 'abhigoyal_snapshot'
 				)
 				rtMavenRun(
 					pom: 'pom.xml',
@@ -101,7 +101,7 @@ pipeline
 		always {
 			emailext attachmentsPattern: 'report.html', body: '${JELLY_SCRIPT,template="health"}', mimeType: 'text/html', recipientProviders: [
 				[$class: 'RequesterRecipientProvider']
-			], replyTo: 'abhishekgoyal00@gmail.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishekgoyal00@gmail.com'
+			], replyTo: 'abhishek.goyal@nagarro.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishek.goyal@nagarro.com'
 		}
 	}	
 }
