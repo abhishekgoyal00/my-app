@@ -55,13 +55,13 @@ pipeline
 				}
 			}
 		}
-	    	/*stage('Upload to Artifactory') {
+	    	stage('Upload to Artifactory') {
 			steps {
 				rtMavenDeployer(
 					id: 'deployer',
 					serverId: '123456789@artifactory',
-					releaseRepo: 'abhigoyaldev',
-					snapshotRepo: 'abhigoyaldev'
+					releaseRepo: 'libs-release-local',
+					snapshotRepo: 'libs-snapshot-local'
 				)
 				rtMavenRun(
 					pom: 'pom.xml',
@@ -72,7 +72,7 @@ pipeline
 					serverId: '123456789@artifactory',
 				)
 			}
-		}*/
+		}
 	    	stage('Docker Image') {
 			steps {
 				bat returnStdout: true, script: 'docker build -t abhigoyaldev/my-app:%BUILD_NUMBER% -f Dockerfile .'
