@@ -55,6 +55,24 @@ pipeline
 				}
 			}
 		}
+	    	stage('Upload to Artifactory') {
+			steps {
+				rtMavenDeployer(
+					id: 'deployer',
+					serverId: '123456789@artifactory',
+					releaseRepo: 'abhigoyaldev',
+					snapshotRepo: 'abhigoyaldev'
+				)
+				rtMavenRun(
+					pom: 'pom.xml',
+					goals: 'clean install',
+					deployerId: 'deployer',
+				)
+				rtPublishBuildInfo(
+					serverId: '123456789@artifactory',
+				)
+			}
+		}
 	    	stage('Docker Image') {
 			steps {
 				bat returnStdout: true, script: 'docker build -t abhigoyaldev/my-app:%BUILD_NUMBER% -f Dockerfile .'
