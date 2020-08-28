@@ -90,7 +90,7 @@ pipeline
 	    {
 		    steps
 		    {
-		    	bat returnStdout: true, script: '/bin/docker push dtr.nagarro.com:443/i_abhishekgoyal_develop:%BUILD_NUMBER%'
+		    	bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/i_abhishekgoyal_develop:%BUILD_NUMBER%'
 		    }
 	    }
 	    	/*stage('Stop Running container') {
