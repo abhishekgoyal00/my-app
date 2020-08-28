@@ -75,7 +75,7 @@ pipeline
 		}
 	    	stage('Docker Image') {
 			steps {
-				bat returnStdout: true, script: '/bin/docker build -t dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -f Dockerfile .'
+				bat returnStdout: true, script: 'docker build -t dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -f Dockerfile .'
 			}
 		}
 	    	stage ('Push to DTR') {			
@@ -83,7 +83,7 @@ pipeline
 				/*withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
 					bat returnStdout: true, script: "docker login -u abhigoyaldev -p ${dockerHubPwd}"
 				}*/
-				bat returnStdout: true, script: '/bin/docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+				bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 			}
 		}
 	    	/*stage('Stop Running container') {
@@ -93,7 +93,7 @@ pipeline
 		}*/
 	    	stage('Docker deployment') {
 			steps {
-				bat 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+				bat 'docker run --name my-app -d -p 7000:8080 my-app:%BUILD_NUMBER%'
 			}
 		}
     }
