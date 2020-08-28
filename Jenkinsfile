@@ -83,7 +83,7 @@ pipeline
 				withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
 					bat returnStdout: true, script: "docker login -u abhigoyaldev -p ${dockerHubPwd}"
 				}
-				bat returnStdout: true, script: 'docker push abhigoyaldev/c_abhishekgoyal_develop:%BUILD_NUMBER%'
+				bat returnStdout: true, script: 'docker push abhigoyaldev/i_abhishekgoyal_develop:%BUILD_NUMBER%'
 			}
 		}
 	    	stage('Stop Running container') {
@@ -93,7 +93,7 @@ pipeline
 		}
 	    	stage('Docker deployment') {
 			steps {
-				bat 'docker run --name i_abhishekgoyal_develop -d -p 6001:8080 abhigoyaldev/i_abhishekgoyal_develop:%BUILD_NUMBER%'
+				bat 'docker run --name c_abhishekgoyal_develop -d -p 6001:8080 abhigoyaldev/c_abhishekgoyal_develop:%BUILD_NUMBER%'
 			}
 		}
     }
