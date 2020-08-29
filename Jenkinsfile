@@ -96,6 +96,16 @@ pipeline
 				bat 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 			}
 		}
+	    stage ('helm charts deployment')
+		{
+		    steps
+		    {
+		        sh '''
+		            kubectl create namespace abhi-n
+		            helm install devops-helm-java mychart-java --set image=dtr.nagarro.com:443/my-app:${BUILD_NUMBER} -n abhi-n 
+		        '''
+		    }
+		}
     }
     /*post {
 		always {
