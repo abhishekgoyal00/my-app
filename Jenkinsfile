@@ -93,15 +93,14 @@ pipeline
 		}
 	    	stage('Docker deployment') {
 			steps {
-				bat 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+				bat returnStdout: true, script: 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 			}
 		}	
 		stage ('helm charts deployment')
 		{
 		    steps
 		    {
-			bat 'helm init'
-		        bat 'helm install devops-helm mychart --set image=dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+			bat returnStdout:true, script: 'kubectl create namespace ab'
 		    }
 		}    
     }
