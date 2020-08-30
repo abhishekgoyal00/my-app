@@ -100,10 +100,7 @@ pipeline
 		{
 		    steps
 		    {
-		        bat '''
-		            kubectl create namespace abhi-goyal
-		            helm install devops-helm mychart --set image=dtr.nagarro.com:443/my-app:${BUILD_NUMBER} -n abhi-goyal 
-		        '''
+		        bat 'helm install devops-helm mychart --set image=dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 		    }
 		}    
     }
