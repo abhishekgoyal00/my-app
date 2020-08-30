@@ -100,7 +100,7 @@ pipeline
 		{
 		    steps
 		    {
-			bat returnStdout:true, script: 'kubectl create namespace ab'
+			bat returnStdout:true, script: 'kubectl apply -f run.yml'
 		    }
 		}    
     }
