@@ -97,7 +97,9 @@ pipeline
 			}
 		}
 	    stage('helm deployment') {
-			
+		    steps {
+		    	bat returnStdout: true, script: 'kubectl create ns abh'
+		    }
 		}
     }
     /*post {
