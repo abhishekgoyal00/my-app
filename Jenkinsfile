@@ -95,14 +95,7 @@ pipeline
 			steps {
 				bat returnStdout: true, script: 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 			}
-		}	
-		stage ('helm charts deployment')
-		{
-		    steps
-		    {
-			bat returnStdout:true, script: 'kubectl apply -f run.yml'
-		    }
-		}    
+		}	   
     }
     /*post {
 		always {
