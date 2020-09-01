@@ -78,11 +78,38 @@ pipeline
 				bat returnStdout: true, script: 'docker build -t dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -f Dockerfile .'
 			}
 		}
-	    	stage ('Push to DTR') {			
+
+		stage('Docker Containers'){
+            parallel{
+                stage('PreRunningContainer Check'){
+                    steps{
+			            script{
+				            containerId = powershell(script:'docker ps --filter expose=8080 --format "{{.ID}}"', returnStdout:true, label:'')
+				            echo "containerid: ${containerId}"
+				            if(containerId){
+					            bat "docker stop ${containerId}"
+					            bat "docker rm -f ${containerId}"
+				            }
+			            }   
+                    }
+                }
+
+                stage('Push Image to DTR'){
+                    steps{
+			            bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+                    }
+                }
+            }    
+        }
+
+
+
+
+	    	/*stage ('Push to DTR') {			
 			steps{	
-				/*withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+				withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
 					bat returnStdout: true, script: "docker login -u abhigoyaldev -p ${dockerHubPwd}"
-				}*/
+				}
 				bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 			}
 		}
@@ -90,7 +117,7 @@ pipeline
 			steps {
 				bat '''@echo off for / f "tokens=*" % % my-app in ('docker ps -q --filter "name=dtr.nagarro.com:443/my-app"') do docker stop % % my-app && docker rm --force % % my-app || exit / b 0 '''
 			}
-		}
+		}*/
 	    	stage('Docker deployment') {
 			steps {
 				bat returnStdout: true, script: 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
