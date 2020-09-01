@@ -98,7 +98,8 @@ pipeline
 		}
 	    stage('helm deployment') {
 		    steps {
-		    	bat returnStdout: true, script: 'kubectl create ns abh helm install my-app-helm my-chart --set dtr.nagarro.com:443/my-app:${BUILD_NUMBER} -n abh'
+		    	bat 'kubectl create ns abh'
+		    	bat 'helm install my-app-helm my-chart --set dtr.nagarro.com:443/my-app:${BUILD_NUMBER} -n abh'
 		    }
 		}
     }
