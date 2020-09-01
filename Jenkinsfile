@@ -45,7 +45,7 @@ pipeline
 				bat "mvn test"
 			}
 		}
-		/*stage ('Sonar Analysis')
+		stage ('Sonar Analysis')
 		{
 			steps
 			{
@@ -72,7 +72,7 @@ pipeline
 					serverId: '123456789@artifactory',
 				)
 			}
-		}*/
+		}
 	    	stage('Docker Image') {
 			steps {
 				bat returnStdout: true, script: 'docker build -t dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -f Dockerfile .'
