@@ -99,7 +99,7 @@ pipeline
 	    stage('helm deployment') {
 		    steps {
 		    	bat 'kubectl create ns abh'
-		    	bat 'helm install my-app-helm my-chart --set dtr.nagarro.com:443/my-app:${BUILD_NUMBER} -n abh'
+		    	bat 'helm install app-deployment my-chart --set image=dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -n abh'
 		    }
 		}
     }
