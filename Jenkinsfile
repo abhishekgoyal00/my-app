@@ -120,7 +120,7 @@ pipeline
 		}*/
 	    	stage('Docker deployment') {
 			steps {
-				bat returnStdout: true, script: 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+				bat returnStdout: true, script: 'docker run --name c-my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
 			}
 		}
 	    stage('helm deployment') {
