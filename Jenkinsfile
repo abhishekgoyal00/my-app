@@ -45,7 +45,7 @@ pipeline
 				bat "mvn test"
 			}
 		}
-		stage ('Sonar Analysis')
+		/*stage ('Sonar Analysis')
 		{
 			steps
 			{
@@ -72,14 +72,14 @@ pipeline
 					serverId: '123456789@artifactory',
 				)
 			}
-		}
+		}*/
 	    	stage('Docker Image') {
 			steps {
 				bat returnStdout: true, script: 'docker build -t dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -f Dockerfile .'
 			}
 		}
 
-		stage('Docker Containers'){
+		/*stage('Docker Containers'){
             parallel{
                 stage('PreRunningContainer Check'){
                     steps{
@@ -100,12 +100,12 @@ pipeline
                     }
                 }
             }    
-        }
+        }*/
 
 
 
 
-	    	/*stage ('Push to DTR') {			
+	    	stage ('Push to DTR') {			
 			steps{	
 				withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
 					bat returnStdout: true, script: "docker login -u abhigoyaldev -p ${dockerHubPwd}"
@@ -117,7 +117,7 @@ pipeline
 			steps {
 				bat '''@echo off for / f "tokens=*" % % my-app in ('docker ps -q --filter "name=dtr.nagarro.com:443/my-app"') do docker stop % % my-app && docker rm --force % % my-app || exit / b 0 '''
 			}
-		}*/
+		}
 	    	stage('Docker deployment') {
 			steps {
 				bat returnStdout: true, script: 'docker run --name my-app -d -p 7000:8080 dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
