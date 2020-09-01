@@ -84,7 +84,7 @@ pipeline
                 stage('PreRunningContainer Check'){
                     steps{
 			            script{
-				            containerId = powershell(script:'docker ps --filter expose=7000-7010/tcp --format "{{.ID}}"', returnStdout:true, label:'')
+				            containerId = powershell(script:'docker ps --filter expose=7000-8080/tcp --format "{{.ID}}"', returnStdout:true, label:'')
 				            echo "containerid: ${containerId}"
 				            if(containerId){
 					            bat "docker stop ${containerId}"
