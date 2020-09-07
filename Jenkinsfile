@@ -46,7 +46,7 @@ pipeline
 			}
 		}
 
-node() {
+stage ('ss') {
   parallel(
     'Internal': {
       stage('Prep') {
