@@ -80,7 +80,7 @@ pipeline
 		}
 
 		stage('Docker Containers'){
-            parallel{
+            parallel 'PreRunningContainer' : {
                 stage('PreRunningContainer Check'){
                     steps{
 			            script{
@@ -92,13 +92,13 @@ pipeline
 				            }
 			            }   
                     }
-                }
-
-                stage('Push Image to DTR'){
-                    steps{
-			            bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
-                    }
-                }
+                }, 'Push' : {
+	                stage('Push Image to DTR'){
+	                    steps{
+				            bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
+	                    }
+	                }
+            	}
             }    
         }
 
