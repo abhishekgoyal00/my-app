@@ -45,28 +45,6 @@ pipeline
 				bat "mvn test"
 			}
 		}
-
-stage ('ss') {
-  parallel(
-    'Internal': {
-      stage('Prep') {
-        echo "Prep internal"
-      }
-      stage('Run') {
-        echo "Run internal"
-      }
-    },
-    'Prod': {
-      stage('Prep') {
-        echo "Prep prod"
-      }
-      stage('Run') {
-        echo "Run prod"
-      }
-    }
-  )
-}
-
 		stage ('Sonar Analysis')
 		{
 			steps
