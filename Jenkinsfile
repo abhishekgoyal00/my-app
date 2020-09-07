@@ -79,17 +79,6 @@ pipeline
 			}
 		}
 
-		stage('paraller') {
-			parallel{(
-                    "StageA": {
-                        echo "This is branch a"
-                    },
-                    "StageB": {
-                        echo "This is branch b"
-                    }
-            })
-		}
-
 		stage('Docker Containers'){
             parallel{
                 stage('PreRunningContainer Check'){
