@@ -80,14 +80,14 @@ pipeline
 		}
 
 		stage('paraller') {
-			parallel(
+			parallel{(
                     "StageA": {
                         echo "This is branch a"
                     },
                     "StageB": {
                         echo "This is branch b"
                     }
-            )
+            })
 		}
 
 		stage('Docker Containers'){
