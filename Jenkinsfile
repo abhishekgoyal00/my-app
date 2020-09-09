@@ -28,7 +28,7 @@ pipeline
 		{
 			steps
 			{
-				echo "hello! I am in deve environment."
+				echo "hello! I’m in development environment."
 				checkout scm
 			}
 		}
