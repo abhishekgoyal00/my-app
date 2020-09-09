@@ -55,7 +55,7 @@ pipeline
 					bat "mvn sonar:sonar"
 				}
 			}
-		}
+		}*/
 	    	stage('Upload to Artifactory') {
 			steps {
 				rtMavenDeployer(
@@ -95,13 +95,13 @@ pipeline
                     }
                 }
 
-                stage('Push Image to DTR'){
+                /*stage('Push Image to DTR'){
                     steps{
 			            bat returnStdout: true, script: 'docker push dtr.nagarro.com:443/my-app:%BUILD_NUMBER%'
                     }
-                }
+                }*/
             }    
-        }*/
+        }
 
 
 
