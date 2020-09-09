@@ -21,14 +21,14 @@ pipeline
 	  
 	    //To avoid concurrent builds to avoid multiple checkouts
 	    disableConcurrentBuilds()
-	    echo "hello! I am in deve environment."
     }
     stages
-    {
+    {    	
 	    stage ('checkout')
 		{
 			steps
 			{
+				echo "hello! I am in deve environment."
 				checkout scm
 			}
 		}
