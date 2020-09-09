@@ -1,6 +1,5 @@
 pipeline
 {
-	echo "hello! I am in deve environment."
     agent any
 	tools
 	{
@@ -22,6 +21,7 @@ pipeline
 	  
 	    //To avoid concurrent builds to avoid multiple checkouts
 	    disableConcurrentBuilds()
+	    echo "hello! I am in deve environment."
     }
     stages
     {
