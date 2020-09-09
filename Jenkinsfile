@@ -24,13 +24,7 @@ pipeline
     }
     stages
     {
-    	stage('Pipeline'){
-            steps{
-                echo "hello! I am in deve environment."
-               
-            }
-         }
-
+    	echo "hello! I am in deve environment."
 	    stage ('checkout')
 		{
 			steps
