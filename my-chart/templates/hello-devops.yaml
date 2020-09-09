@@ -18,7 +18,7 @@ spec:
       - name: tomcat
         image: dtr.nagarro.com:443/my-app:46
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -32,6 +32,6 @@ spec:
   - name: port8080
     protocol: TCP
     nodePort: {{ .Values.nodePort }}
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
 
