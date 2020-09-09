@@ -1,5 +1,6 @@
 pipeline
 {
+	echo "hello! I am in deve environment."
     agent any
 	tools
 	{
@@ -24,7 +25,6 @@ pipeline
     }
     stages
     {
-    	echo "hello! I am in deve environment."
 	    stage ('checkout')
 		{
 			steps
