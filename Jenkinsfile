@@ -132,7 +132,7 @@ pipeline
 					    bat "kubectl delete ns abh"
 				    }
 		    		bat 'kubectl create ns abh'
-		    		bat 'helm install app-deployment my-chart --set image=dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -n abh'
+		    		bat 'helm install app-deployment my-chart --set image=dtr.nagarro.com:443/my-app:%BUILD_NUMBER% --set nodeport=30157 -n abh'
 			    }
 		    }
 		}
