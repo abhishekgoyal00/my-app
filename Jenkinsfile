@@ -46,7 +46,7 @@ pipeline
 				bat "mvn test"
 			}
 		}
-		stage ('Sonar Analysis')
+		/*stage ('Sonar Analysis')
 		{
 			steps
 			{
@@ -101,7 +101,7 @@ pipeline
                     }
                 }
             }    
-        }
+        }*/
 
 
 
@@ -128,6 +128,7 @@ pipeline
 		    steps {
 			    script{
 			    	namespaceName = powershell(script:"kubectl get ns --field-selector metadata.name=abh", returnStdout:true, label:'')
+				    echo "namespaceName: ${namespaceName}"
 				    if(namespaceName){
 					    bat "kubectl delete ns ${namespaceName}"
 				    }
