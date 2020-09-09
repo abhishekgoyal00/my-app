@@ -128,9 +128,8 @@ pipeline
 		    steps {
 			    script{
 			    	namespaceName = powershell(script:"kubectl get ns --field-selector metadata.name=abh", returnStdout:true, label:'')
-				    echo "namespaceName: ${namespaceName}"
 				    if(namespaceName){
-					    bat "kubectl delete ns ${namespaceName}"
+					    bat "kubectl delete ns abh"
 				    }
 		    		bat 'kubectl create ns abh'
 		    		bat 'helm install app-deployment my-chart --set image=dtr.nagarro.com:443/my-app:%BUILD_NUMBER% -n abh'
